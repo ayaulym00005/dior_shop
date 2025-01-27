@@ -1,0 +1,69 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Ваша корзина{% endblock %}
+
+{% block content %}
+<div class="cart-container" style="padding: 40px;">
+    <h1>Ваша корзина</h1>
+    {% if cart_items %}
+        <div class="cart-items" style="margin-bottom: 20px;">
+            <ul style="list-style-type: none; padding: 0;">
+                {% for item in cart_items %}
+                <li style="border-bottom: 1px solid #ddd; padding: 10px 0; display: flex; align-items: center; gap: 20px;">
+                    <!-- Изображение товара -->
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <div>
+                        <h3>{{ item.product.name }}</h3>
+                        <p>Цена: {{ item.product.price }} ₽</p>
+                        <p>Количество: {{ item.quantity }}</p>
+                    </div>
+                    <!-- Кнопка удаления товара из корзины -->
+                    <form method="post" action="{% url 'remove_from_cart' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit" style="background-color: #f44336; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                            Удалить
+                        </button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="cart-total" style="margin-top: 20px;">
+            <h2>Итого: {{ total_price }} ₽</h2>
+        </div>
+    {% else %}
+        <p>Ваша корзина пуста.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .cart-container {
+            padding: 20px;
+        }
+
+        .cart-items li {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .cart-items img {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .cart-items li {
+            font-size: 14px;
+        }
+
+        .cart-total h2 {
+            font-size: 18px;
+        }
+    }
+</style>
+{% endblock %}

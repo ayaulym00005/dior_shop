@@ -1,0 +1,40 @@
+<!-- templates/store/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dior Shop{% endblock %}</title>
+
+    <!-- Подключение Bootstrap CSS (CDN) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Дополнительные стили -->
+    {% comment %} <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endcomment %}
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="{% url 'about' %}">О нас</a></li>
+                <li><a href="{% url 'catalog' %}">Каталог</a></li>
+                <li><a href="{% url 'contact' %}">Контакты</a></li>
+                <li><a href="{% url 'basket' %}">Корзина</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <!-- Контент страницы -->
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <!-- Подключение Bootstrap JS и Popper.js (для работы некоторых элементов, таких как dropdown) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
