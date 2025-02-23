@@ -1,12 +1,32 @@
 {% extends 'store/base.html' %}
+{%load static%}
+{% block link%} 
+<link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}">
+{%endblock%}
 
 {% block content %}
   <div class="auth-form">
-    <h2>Login</h2>
+    <h2>Вход</h2>
+
+    <!-- Вывод сообщений об ошибках -->
+    {% if messages %}
+      <div class="error-messages">
+        {% for message in messages %}
+          <div class="error-text">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
     <form method="post">
       {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Login</button>
+      <div class="form-group">
+        {{ form.as_p }}
+      </div>
+      <button type="submit" class="auth-button">Войти</button>
     </form>
+
+    <div class="register-link">
+      <a href="{% url 'register' %}">Зарегистрироваться</a>
+    </div>
   </div>
 {% endblock %}

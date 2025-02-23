@@ -1,7 +1,7 @@
 # store/urls.py
-from atexit import register
 from django.urls import include, path
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -16,6 +16,6 @@ urlpatterns = [
     path('update-profile/', views.update_profile, name='update_profile'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('remove-from-cart/<int:item_id>/', views.remove_from_cart, name='remove_from_cart'),
-    path('register/', register, name='register'),
     path('account/', views.account, name='account'),
+    path('product/<int:product_id>/', views.product_detail, name='product_detail'),
 ]

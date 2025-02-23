@@ -1,0 +1,13 @@
+<!-- templates/accounts/verify.html -->
+{% extends "store/base.html" %}
+
+{% block content %}
+  <div class="verify-container">
+    <h1>Введите код подтверждения</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="verification_code" placeholder="Код подтверждения" required>
+      <button type="submit">Подтвердить</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,85 @@
+/* Основные стили для body */
+
+body {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff;
+    /* Бледно-синий фон */
+    color: #333;
+    /* Основной цвет текста */
+}
+
+
+/* Стили для header */
+
+.header {
+    background-color: #e0f7ff;
+    /* Бледно-синий цвет для шапки */
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Легкая тень для глубины */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    /* Высота логотипа */
+}
+
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav ul li {
+    margin-left: 20px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+    color: #0077b6;
+    /* Цвет при наведении */
+}
+
+
+/* Стили для main */
+
+main {
+    padding: 20px 0;
+}
+
+
+/* Стили для footer */
+
+.footer {
+    background-color: #e0f7ff;
+    /* Бледно-синий цвет для подвала */
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    /* Легкая тень для глубины */
+    margin-top: 40px;
+}
+
+.footer p {
+    margin: 0;
+    color: #333;
+    font-size: 14px;
+}

@@ -13,13 +13,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
-# from dotcdenv import load_dotenv
-from dotenv import load_dotenv
-
-# Загрузка переменных из .env файла
-load_dotenv()
-
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ayauayau'
+SECRET_KEY = 'your-secret-key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,28 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Внешние библиотеки
     'bootstrap4',
-    'crispy_forms',
-    
-    # Мои приложения
-    'store',
-    'accounts',
-    'django_seed',
+    'store.apps.StoreConfig',
 
-
-    # Аутентификация
-    'django.contrib.sites',  
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
 ]
 
-AUTHENTICATION_BACKENDS = (
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-    
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -84,7 +60,9 @@ ROOT_URLCONF = 'dior_shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Убедитесь, что у вас есть папка templates в корне проекта
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,7 +78,6 @@ TEMPLATES = [
 
 
 
-
 WSGI_APPLICATION = 'dior_shop.wsgi.application'
 
 
@@ -109,17 +86,10 @@ WSGI_APPLICATION = 'dior_shop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dior',  # Имя базы данных в PostgreSQL
-        'USER': 'postgres',  # Имя пользователя базы данных
-        'PASSWORD': 'ayauayau',  # Пароль пользователя
-        'HOST': 'localhost',  # Обычно это localhost, если база на твоем компьютере
-        'PORT': '5432',  # Порт по умолчанию для PostgreSQL
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-
 
 
 # Password validation
@@ -180,20 +150,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'  # Замените '/login/' на путь к вашей странице входа
-
-# Настройки для отправки email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Для разработки
-# Для продакшн используйте SMTP настройки
-
-ACCOUNT_AUTHENTICATED_REDIRECT_URL = '/'  # Перенаправление после успешной авторизации
-LOGIN_REDIRECT_URL = '/'  # Перенаправление после входа в систему
-LOGOUT_REDIRECT_URL = '/'  # Перенаправление после выхода
-
-# Настройки для двухфакторной аутентификации
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-
-TWILIO_ACCOUNT_SID = 'your_twilio_account_sid'
-TWILIO_AUTH_TOKEN = 'your_twilio_auth_token'
-TWILIO_PHONE_NUMBER = 'your_twilio_phone_number'
 

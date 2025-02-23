@@ -1,29 +1,32 @@
-<!-- templates/store/catalog.html -->
 {% extends 'store/base.html' %}
 
 {% load static %}
 
-{% block title %}Каталог{% endblock %}
+{%block link%}
+<link rel="stylesheet" href="{% static 'store/css/catalog/styles.css' %}">
+{%endblock%}
+{% block title %}Каталог | Dior Shop{% endblock %}
 
 {% block content %}
-<div class="catalog-container" style="padding: 40px; text-align: center;">
-    <h1 style="margin-bottom: 30px;">Наш каталог</h1>
-    <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+<div class="catalog-container">
+    <h1 class="catalog-title">Наш каталог</h1>
+    <div class="product-grid">
         {% for product in products %}
-        <div class="product-card" style="border: 1px solid #ddd; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <img src="{% static product.image %}" alt="{{ product.name }}" style="width: 100%; height: 250px; object-fit: cover;">
-            <div class="product-details" style="padding: 15px;">
-                <h3 style="margin: 0 0 10px;">{{ product.name }}</h3>
-                <p style="color: #555; font-size: 14px; margin: 0 0 15px;">{{ product.description|truncatechars:50 }}</p>
-                <p style="font-weight: bold; margin: 0 0 15px;">Цена: {{ product.price }} тенге</p>
-                <button class="add-to-cart-btn" data-product-id="{{ product.id }}" style="background-color: #5a3f37; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">Добавить в корзину</button>
+        <div class="product-card">
+            
+            <img src="http://127.0.0.1:8000/static/{{ product.image }}" alt="{{ product.name }}" class="product-image">
+            <div class="product-details">
+                <h3 class="product-name">{{ product.name }}</h3>
+                <p class="product-description">{{ product.description|truncatechars:50 }}</p>
+                <p class="product-price">{{ product.price }} ₸</p>
+                <button class="add-to-cart-btn" data-product-id="{{ product.id }}">Добавить в корзину</button>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
 
-<!-- Modal for success message -->
+<!-- Модальное окно -->
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close-button" onclick="closeModal()">&times;</span>
@@ -31,38 +34,14 @@
     </div>
 </div>
 
-<!-- Modal styles -->
-<style>
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        justify-content: center;
-        align-items: center;
-    }
+<!-- CSRF токен -->
+<input type="hidden" id="csrf_token" value="{{ csrf_token }}">
 
-    .modal-content {
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-    }
+{% endblock %}
 
-    .close-button {
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-</style>
-
-<!-- JavaScript to handle adding to cart and showing the modal -->
+{% block extra_js %}
 <script>
-    // Function to open the modal with a message
+    // Открытие модального окна с сообщением
     function openModal(message) {
         const modal = document.getElementById('modal');
         const modalMessage = document.getElementById('modal-message');
@@ -70,25 +49,28 @@
         modal.style.display = 'flex';
     }
 
-    // Function to close the modal
+    // Закрытие модального окна
     function closeModal() {
-        const modal = document.getElementById('modal');
-        modal.style.display = 'none';
+        document.getElementById('modal').style.display = 'none';
     }
 
-    // Function to handle the "Add to Cart" button click
+    // Добавление товара в корзину
     async function addToCart(productId) {
+        const csrfToken = document.getElementById('csrf_token').value;
+        
         try {
-            const response = await fetch(`/add-to-cart/${productId}/`, {
+            const response = await fetch("{% url 'add_to_cart' %}", {
                 method: 'POST',
                 headers: {
-                    'X-CSRFToken': '{{ csrf_token }}',
+                    'X-CSRFToken': csrfToken,
+                    'Content-Type': 'application/json'
                 },
+                body: JSON.stringify({ product_id: productId })
             });
 
             if (response.ok) {
                 const data = await response.json();
-                openModal(data.message);  // Show success message in modal
+                openModal(data.message);  
             } else {
                 openModal('Ошибка при добавлении товара в корзину.');
             }
@@ -97,14 +79,14 @@
         }
     }
 
-    // Event listener for all "Add to Cart" buttons
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const productId = event.target.getAttribute('data-product-id');
-            addToCart(productId);
+    // Обработчик события для кнопок "Добавить в корзину"
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const productId = event.target.getAttribute('data-product-id');
+                addToCart(productId);
+            });
         });
     });
 </script>
 {% endblock %}
-
-

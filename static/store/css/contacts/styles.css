@@ -1,0 +1,129 @@
+/* Основные стили для контейнера контактов */
+
+.contact-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    /* Белый фон для контейнера */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Легкая тень для контейнера */
+}
+
+
+/* Заголовок страницы */
+
+.contact-title {
+    font-size: 2.5em;
+    color: #0077b6;
+    /* Бледно-синий цвет для заголовка */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/* Общие стили для текста */
+
+.contact-container p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    /* Темно-серый цвет текста */
+    text-align: center;
+}
+
+
+/* Стили для блока с контактной информацией */
+
+.contact-info {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #e0f7ff;
+    /* Бледно-синий фон для контактной информации */
+    border-radius: 8px;
+    text-align: center;
+}
+
+.contact-info p {
+    margin: 10px 0;
+    font-size: 1em;
+    color: #0077b6;
+    /* Бледно-синий цвет текста */
+}
+
+.contact-info a {
+    color: #0077b6;
+    /* Цвет ссылок */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #005f8b;
+    /* Цвет ссылок при наведении */
+}
+
+
+/* Стили для формы */
+
+.contact-form {
+    margin-top: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1em;
+    color: #0077b6;
+    /* Бледно-синий цвет для меток */
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #0077b6;
+    /* Бледно-синяя рамка */
+    border-radius: 5px;
+    background-color: #f0f8ff;
+    /* Бледно-синий фон для полей ввода */
+    color: #333;
+    /* Темно-серый цвет текста */
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #005f8b;
+    /* Цвет рамки при фокусе */
+    outline: none;
+}
+
+
+/* Стили для кнопки отправки */
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    color: #fff;
+    /* Белый цвет текста */
+    background-color: #0077b6;
+    /* Бледно-синий цвет кнопки */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #005f8b;
+    /* Цвет кнопки при наведении */
+}

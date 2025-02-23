@@ -1,48 +1,47 @@
-<!-- templates/store/base.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Dior Shop{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
 
-    <!-- Подключение Bootstrap CSS (CDN) -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    {%block link%} {%endblock%}
+ 
 
-    <!-- Дополнительные стили -->
-    {% comment %} <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Главная</a></li>
-                <li><a href="{% url 'about' %}">О нас</a></li>
-                <li><a href="{% url 'catalog' %}">Каталог</a></li>
-                <li><a href="{% url 'contact' %}">Контакты</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'basket' %}">Корзина</a></li>
-                <li><a href="{% url 'profile' %}">Мой аккаунт</a></li>
-                <li><a href="{% url 'logout' %}">Выйти</a></li>
-            {% else %}
-                <li><a href="{% url 'login' %}">Войти</a></li>
-                <li><a href="{% url 'register' %}">Регистрация</a></li>
-            {% endif %}
-
-            </ul>
-        </nav>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="{% static 'main/img/logo.jpg' %}" alt="Dior Shop">
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="{% url 'catalog' %}">Каталог</a></li>
+                    <li><a href="{% url 'contact' %}">Контакты</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'profile' %}">Мой аккаунт</a></li>
+                        <li><a href="{% url 'logout' %}">Выйти</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Войти</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
     </header>
     
-    <div class="container">
-        <!-- Контент страницы -->
-        <div class="content">
-            {% block content %}{% endblock %}
-        </div>
-    </div>
-
-    <!-- Подключение Bootstrap JS и Popper.js (для работы некоторых элементов, таких как dropdown) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Основной контент -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Подвал -->
+    <footer class="footer">
+        <p>&copy; 2025 Dior Shop. Все права защищены.</p>
+    </footer>
 </body>
 </html>

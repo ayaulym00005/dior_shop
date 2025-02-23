@@ -1,0 +1,32 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{%load static%}
+{% block link %}
+<link rel="stylesheet" href="{% static 'accounts/css/register/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="registration-container">
+    <h2 class="registration-title">Регистрация</h2>
+
+    {% if messages %}
+        <div class="error-messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post" class="registration-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-btn">Зарегистрироваться</button>
+    </form>
+
+    <div class="info-message">
+        <p>После регистрации мы отправим вам SMS с кодом подтверждения. Пожалуйста, проверьте свой телефон и введите код на следующем шаге.</p>
+    </div>
+</div>
+{% endblock %}

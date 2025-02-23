@@ -1,0 +1,156 @@
+/* Основные стили для контейнера каталога */
+
+.catalog-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    /* Белый фон для контейнера */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Легкая тень для контейнера */
+}
+
+
+/* Заголовок каталога */
+
+.catalog-title {
+    font-size: 2.5em;
+    color: #0077b6;
+    /* Бледно-синий цвет для заголовка */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+/* Сетка товаров */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+
+/* Карточка товара */
+
+.product-card {
+    background-color: #e0f7ff;
+    /* Бледно-синий фон для карточки */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Изображение товара */
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+/* Детали товара */
+
+.product-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.product-name {
+    font-size: 1.2em;
+    color: #0077b6;
+    /* Бледно-синий цвет для названия */
+    margin-bottom: 10px;
+}
+
+.product-description {
+    font-size: 0.9em;
+    color: #555;
+    /* Серый цвет для описания */
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 1.1em;
+    color: #0077b6;
+    /* Бледно-синий цвет для цены */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+
+/* Кнопка "Добавить в корзину" */
+
+.add-to-cart-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    color: #fff;
+    /* Белый цвет текста */
+    background-color: #0077b6;
+    /* Бледно-синий цвет кнопки */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #005f8b;
+    /* Цвет кнопки при наведении */
+}
+
+
+/* Модальное окно */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Полупрозрачный фон */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #0077b6;
+}
+
+.close-button:hover {
+    color: #005f8b;
+}
+
+#modal-message {
+    font-size: 1.2em;
+    color: #333;
+}

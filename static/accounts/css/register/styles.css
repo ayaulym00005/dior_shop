@@ -1,0 +1,109 @@
+/* Основные стили для контейнера регистрации */
+
+.registration-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    /* Белый фон для контейнера */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Легкая тень для контейнера */
+}
+
+
+/* Заголовок регистрации */
+
+.registration-title {
+    font-size: 2em;
+    color: #0077b6;
+    /* Бледно-синий цвет для заголовка */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/* Сообщения об ошибках */
+
+.error-messages {
+    margin-bottom: 20px;
+}
+
+.error-messages p {
+    color: #ff4d4d;
+    /* Красный цвет для сообщений об ошибках */
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+
+/* Форма регистрации */
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.registration-form p {
+    margin: 0;
+}
+
+.registration-form label {
+    font-size: 1em;
+    color: #0077b6;
+    /* Бледно-синий цвет для меток */
+    margin-bottom: 5px;
+}
+
+.registration-form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #0077b6;
+    /* Бледно-синяя рамка */
+    border-radius: 5px;
+    background-color: #f0f8ff;
+    /* Бледно-синий фон для полей ввода */
+    color: #333;
+    /* Темно-серый цвет текста */
+    transition: border-color 0.3s ease;
+}
+
+.registration-form input:focus {
+    border-color: #005f8b;
+    /* Цвет рамки при фокусе */
+    outline: none;
+}
+
+
+/* Кнопка регистрации */
+
+.submit-btn {
+    padding: 10px 15px;
+    font-size: 1em;
+    color: #fff;
+    /* Белый цвет текста */
+    background-color: #0077b6;
+    /* Бледно-синий цвет кнопки */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #005f8b;
+    /* Цвет кнопки при наведении */
+}
+
+
+/* Информационное сообщение */
+
+.info-message {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #555;
+    /* Серый цвет текста */
+    text-align: center;
+}

@@ -1,26 +1,28 @@
 from django.db import models
-from django.contrib.auth.models import User  # Импорт User дұрыс жерде болуы керек
+from django.conf import settings  # Для использования кастомного пользователя
+
+class Category(models.Model):
+    """Модель для хранения категорий продуктов"""
+    name = models.CharField(max_length=255)
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
-    CATEGORY_CHOICES = [
-        ('palette', 'Палетка'),
-        ('lipstick', 'Помада'),
-        ('highlighter', 'Хайлайтер'),
-    ]
-    
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    image = models.ImageField(upload_to='products/')
     description = models.TextField()
-    price = models.FloatField()
-    image = models.ImageField(upload_to='media/products/')  # Один путь для изображений
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='palette')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    is_popular = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
 
-class Cart(models.Model): 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
+class Cart(models.Model):
+    """Модель для корзины покупок пользователя"""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="carts", verbose_name="User")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="carts", verbose_name="Product")
+    quantity = models.PositiveIntegerField(default=1, verbose_name="Quantity")
 
     def __str__(self):
         return f"{self.product.name} ({self.quantity})"

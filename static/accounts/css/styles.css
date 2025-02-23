@@ -1,0 +1,105 @@
+/* Общий стиль формы */
+
+.auth-form {
+    max-width: 380px;
+    margin: 50px auto;
+    padding: 25px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.auth-form:hover {
+    transform: scale(1.02);
+}
+
+
+/* Заголовок */
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+
+/* Сообщения об ошибках */
+
+.error-messages {
+    margin-bottom: 15px;
+}
+
+.error-text {
+    color: #d9534f;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* Группы элементов формы */
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+
+/* Поля ввода */
+
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.auth-form input:focus {
+    border-color: #5a67d8;
+    outline: none;
+    box-shadow: 0 0 5px rgba(90, 103, 216, 0.5);
+}
+
+
+/* Кнопка входа */
+
+.auth-button {
+    background: linear-gradient(135deg, #936df3, #7e50f3);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.auth-button:hover {
+    background: linear-gradient(135deg, #cebbff, #7e50f3);
+    transform: scale(1.03);
+}
+
+
+/* Ссылка на регистрацию */
+
+.register-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #6b5b95;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.register-link a:hover {
+    color: #feb47b;
+    text-decoration: underline;
+}
