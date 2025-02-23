@@ -1,6 +1,6 @@
 <!-- templates/store/base.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,15 @@
                 <li><a href="{% url 'about' %}">О нас</a></li>
                 <li><a href="{% url 'catalog' %}">Каталог</a></li>
                 <li><a href="{% url 'contact' %}">Контакты</a></li>
+            {% if user.is_authenticated %}
                 <li><a href="{% url 'basket' %}">Корзина</a></li>
+                <li><a href="{% url 'profile' %}">Мой аккаунт</a></li>
+                <li><a href="{% url 'logout' %}">Выйти</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Войти</a></li>
+                <li><a href="{% url 'register' %}">Регистрация</a></li>
+            {% endif %}
+
             </ul>
         </nav>
     </header>

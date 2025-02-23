@@ -3,9 +3,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from .models import Product, Cart  # Исправил CartItem на Cart
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import logout
+from django.contrib.auth.forms import UserCreationForm
+
 
 def home(request):
     return render(request, 'store/home.html')
@@ -13,13 +16,13 @@ def home(request):
 # Регистрация пользователя
 def register(request):
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)  # Авторизация сразу после регистрации
-            return redirect('home')
+            user = form.save()  # Сохраняем пользователя
+            login(request, user)  # Логиним пользователя
+            return redirect('profile')  # Перенаправляем на профиль или другую страницу
     else:
-        form = UserRegistrationForm()
+        form = UserCreationForm()
     return render(request, 'store/register.html', {'form': form})
 
 
@@ -102,3 +105,26 @@ def basket(request):
 
     # Передаем данные в шаблон
     return render(request, 'store/basket.html', {'cart_items': cart_items, 'total_price': total_price})
+
+@login_required
+def profile(request):
+    user = request.user  # Получаем текущего пользователя
+    return render(request, 'store/profile.html', {'user': user})
+
+def logout_view(request):
+    logout(request)  # Выход из системы
+    return redirect('login')
+
+
+@login_required
+def update_profile(request):
+    user = request.user  # Получаем текущего пользователя
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # После успешного обновления редиректим на страницу профиля
+    else:
+        form = UserProfileForm(instance=user)
+
+    return render(request, 'store/update_profile.html', {'form': form})

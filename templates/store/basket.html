@@ -14,9 +14,9 @@
                     <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
                     <div>
                         <h3>{{ item.product.name }}</h3>
-                        <p>Цена: {{ item.product.price }} ₽</p>
+                        <p>Цена: {{ item.product.price }} ₸</p>
                         <p>Количество: {{ item.quantity }}</p>
-                    </div>
+                    </div>   
                     <!-- Кнопка удаления товара из корзины -->
                     <form method="post" action="{% url 'remove_from_cart' item.id %}">
                         {% csrf_token %}
@@ -29,7 +29,7 @@
             </ul>
         </div>
         <div class="cart-total" style="margin-top: 20px;">
-            <h2>Итого: {{ total_price }} ₽</h2>
+            <h2>Итого: {{ total_price }} ₸</h2>
         </div>
     {% else %}
         <p>Ваша корзина пуста.</p>
